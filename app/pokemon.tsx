@@ -1,11 +1,14 @@
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StyleSheet,Text } from "react-native";
+import Navbar from "@/components/Navbar";
 
 export default function pokemon(){
 return(
+    <>
+    <Navbar></Navbar>
     <SafeAreaView style={styles.container}>
-        <Text>Pokemon</Text>
     </SafeAreaView>
+    </>
 );
 }
 const styles = StyleSheet.create({
