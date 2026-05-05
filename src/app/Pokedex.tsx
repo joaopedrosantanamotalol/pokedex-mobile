@@ -1,7 +1,7 @@
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context'; 
 import Navbar from '../components/navbar/Navbar';
 
-export default function Index () {
+export default function Pokedex () {
     return(
         <>
         <Navbar></Navbar>
