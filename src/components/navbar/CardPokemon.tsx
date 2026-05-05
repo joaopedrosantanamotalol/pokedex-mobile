@@ -12,10 +12,11 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: "red",
     minHeight:'5%',
-    width:'100%',
+    minWidth:120,
+    maxWidth:250,
     justifyContent:"center",
     alignItems:'center',
-    
+    borderColor:'red'
   },
   nome: {
     marginTop:'10%',
