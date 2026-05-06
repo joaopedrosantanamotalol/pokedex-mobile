@@ -3,6 +3,7 @@ import Input from '../components/input';
 import { Text, StyleSheet } from 'react-native'; // Import do Input, Dos Estilos e do Texto Diretamente do React
 import Button from '../components/button';
 import { useRouter } from 'expo-router';
+import Navbar from '../components/navbar/Navbar';
 
 
 export default function Login () {
@@ -10,6 +11,7 @@ export default function Login () {
 
     return(
         <SafeAreaProvider>
+            <Navbar></Navbar>
             <SafeAreaView>
                 <Text style = {styles.title}>Acesse Sua Conta!</Text>
                 <Input />
@@ -18,7 +20,6 @@ export default function Login () {
                 title="ENTRAR" 
                 style={{marginTop: 10 }} 
                 />
-
             </SafeAreaView>
         </SafeAreaProvider>
 

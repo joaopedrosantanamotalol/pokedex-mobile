@@ -9,11 +9,12 @@ type Props = TouchableOpacityProps & {
 
 export default function Button({ title, style, ...rest}: Props) {
     return (
-        <TouchableOpacity // Recebe Esse Nome Para Indicar Que o Botão é Tocável em Aparelhos Móveis
-            activeOpacity={0.5} // Opacidade Que o Botão Assume ao Ser Acionado
-            style={[styles.button, style]} // Estilos Internos do Botão + Estilos do Arquivo Externo
-            {...rest}> {/* Permite Usar Todas as Propriedades de um Elemento em Outro*/} 
-                <Text style={styles.title}>{title}</Text> {/* Estilizando o Texto Dentro do Botão*/}
+        
+        <TouchableOpacity
+            activeOpacity={0.5} 
+            style={[styles.button, style]}
+            {...rest}>
+                <Text style={styles.title}>{title}</Text> 
         </TouchableOpacity>
     )
 }
