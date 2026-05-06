@@ -11,6 +11,8 @@ export default function Index () {
                 <Redirect href="/login"></Redirect>
             </SafeAreaView>
         </SafeAreaProvider>
+
+                
         </>
     )
 } 

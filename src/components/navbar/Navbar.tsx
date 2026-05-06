@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Platform } from 'react-native';
 
 export default function Navbar() {
   return (
@@ -12,13 +12,14 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: "red",
     minHeight:'5%',
-    width:'100%',
+     height: Platform.select({
+    web: 120,
+    default: 110,
+  }),
     justifyContent:"center",
     alignItems:'center'
   },
-  nome: {
-    marginTop:'10%',
-    marginBottom:'5%',
+  nome: { 
     fontSize: 20,
     fontWeight: 'bold',
     color:'white',
