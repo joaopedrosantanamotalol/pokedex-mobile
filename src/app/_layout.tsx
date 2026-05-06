@@ -5,6 +5,7 @@ export default function RootLayout() {
     <Stack>
       <Stack.Screen name="index" options={{ title: 'Início', headerShown:false }} />
       <Stack.Screen name="Pokedex" options={{ title: 'PokePoke', headerShown:false }} />
+      <Stack.Screen name="login" options={{title: 'Login', headerShown:false }} />
     </Stack>
   );
 }
