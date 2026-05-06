@@ -14,7 +14,7 @@ export default function Login () {
                 <Text style = {styles.title}>Acesse Sua Conta!</Text>
                 <Input />
                 <Button
-                onPress={() => router.push('/Pokedex')}
+                onPress={() => router.push('/pokedex')}
                 title="ENTRAR" 
                 style={{marginTop: 10 }} 
                 />
