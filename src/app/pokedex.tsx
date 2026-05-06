@@ -12,7 +12,7 @@ export default function Pokedex () {
         <>
         <Navbar></Navbar>
         <SafeAreaProvider>
-            <SafeAreaView>
+            <SafeAreaView style={{ flex: 1 }}>
                 <ScrollView>
                     <CardPokemonGiratina></CardPokemonGiratina>
                     <CardPokemonPalkia></CardPokemonPalkia>
