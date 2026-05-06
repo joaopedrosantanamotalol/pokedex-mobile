@@ -7,9 +7,10 @@ export default function Index () {
         <Navbar></Navbar>
         <SafeAreaProvider>
             <SafeAreaView>
-                
+
             </SafeAreaView>
         </SafeAreaProvider>
         </>
     )
 } 
+ 
