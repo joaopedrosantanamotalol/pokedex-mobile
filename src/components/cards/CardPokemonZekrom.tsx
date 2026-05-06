@@ -11,7 +11,7 @@ export default function CardPokemonZekrom() {
         <View style={styles.conteudo}>
           
           <Image
-            source={require('../assets/images/zekrom.png')}
+            source={require('../../assets/images/zekrom.png')}
             style={styles.imagem}
           />
 

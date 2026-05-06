@@ -11,7 +11,7 @@ export default function CardPokemonMewTwo() {
         <View style={styles.conteudo}>
           
           <Image
-            source={require('../assets/images/MewTwo.png')}
+            source={require('../../assets/images/MewTwo.png')}
             style={styles.imagem}
           />
 

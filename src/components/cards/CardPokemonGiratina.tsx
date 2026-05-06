@@ -11,7 +11,7 @@ export default function CardPokemon() {
         <View style={styles.conteudo}>
           
           <Image
-            source={require('../assets/images/giratina.png')}
+            source={require('../../assets/images/giratina.png')}
             style={styles.imagem}
           />
 

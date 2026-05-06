@@ -11,7 +11,7 @@ export default function CardPokemonDialga() {
         <View style={styles.conteudo}>
           
           <Image
-            source={require('../assets/images/Dialga.png')}
+            source={require('../../assets/images/Dialga.png')}
             style={styles.imagem}
           />
 

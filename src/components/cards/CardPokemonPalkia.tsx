@@ -11,7 +11,7 @@ export default function CardPokemonPalkia() {
         <View style={styles.conteudo}>
           
           <Image
-            source={require('../assets/images/palkia.png')}
+            source={require('../../assets/images/palkia.png')}
             style={styles.imagem}
           />
 
