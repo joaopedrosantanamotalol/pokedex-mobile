@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, Platform } from 'react-native';
 
 export default function CardPokemon() {
   return (
@@ -45,13 +45,16 @@ const styles = StyleSheet.create({
     gap:20
   },
 
-  card: {
-    backgroundColor: "red",
-    width: 300,
-    borderRadius: 15,
-    alignItems: 'center',
-    paddingBottom: 15,
-  },
+ card: {
+  backgroundColor: "red",
+  width: Platform.select({
+    web: 500,
+    default: 300,
+  }),
+  borderRadius: 15,
+  alignItems: 'center',
+  paddingBottom: 15,
+},
 
   nome: {
     marginVertical: 10,
@@ -63,15 +66,18 @@ const styles = StyleSheet.create({
     textShadowRadius: 1,
   },
 
-  conteudo: {
-    backgroundColor: "white",
-    width: '90%',
-    height:340,
-    borderRadius: 15,
-    alignItems: 'center',
-    padding: 10,
-    position:"relative"
-  },
+conteudo: {
+  backgroundColor: "white",
+  width: '90%',
+  height: Platform.select({
+    web: 500,
+    default: 340,
+  }),
+  borderRadius: 15,
+  alignItems: 'center',
+  padding: 10,
+  position: "relative",
+},
 
   imagem: {
     width: 100,
@@ -112,9 +118,13 @@ tipoTexto: {
     textAlign: 'center',
     flexWrap:"wrap"
   },
-   descricao2: {
+ descricao2: {
     color: 'black',
     textAlign: 'justify',
-    flexWrap:"wrap"
+    flexWrap:"wrap",
+    padding:10,
+    fontSize: Platform.select({
+      web:25
+    }),
   },
 });

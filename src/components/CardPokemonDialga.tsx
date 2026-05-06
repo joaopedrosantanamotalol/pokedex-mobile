@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image, Platform } from 'react-native';
+import { View, Text, StyleSheet, Image, Platform, PlatformColor } from 'react-native';
 
 export default function CardPokemonDialga() {
   return (
@@ -117,9 +117,13 @@ tipoTexto: {
     textAlign: 'center',
     flexWrap:"wrap"
   },
-   descricao2: {
+ descricao2: {
     color: 'black',
     textAlign: 'justify',
-    flexWrap:"wrap"
+    flexWrap:"wrap",
+    padding:10,
+    fontSize: Platform.select({
+      web:25
+    }),
   },
 });
