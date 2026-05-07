@@ -1,7 +1,7 @@
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context'; 
 import Navbar from '../components/navbar/Navbar';
 import CardPokemonGiratina from '../components/cards/CardPokemonGiratina';
-import { ScrollView, Text } from 'react-native';
+import { ScrollView } from 'react-native';
 import CardPokemonPalkia from '../components/cards/CardPokemonPalkia';
 import CardPokemonDialga from '../components/cards/CardPokemonDialga';
 import CardPokemonMewTwo from '../components/cards/CardPokemonMewTwo';
