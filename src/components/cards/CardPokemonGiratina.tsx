@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
 conteudo: {
   backgroundColor: "white",
   width: '90%',
-  height: Platform.select({
+  minHeight: Platform.select({
     web: 500,
     default: 340,
   }),
