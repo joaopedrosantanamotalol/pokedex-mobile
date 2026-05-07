@@ -10,10 +10,12 @@ export default function CardPokemonPalkia() {
 
         <View style={styles.conteudo}>
           
-          <Image
-            source={require('../../assets/images/palkia.png')}
-            style={styles.imagem}
-          />
+            <View style={styles.fundoimagem}>
+                             <Image
+                               source={require('../../assets/images/palkia.png')}
+                               style={styles.imagem}
+                             />
+              </View>
 
             <Text style={styles.descricao2}>
              It is said to live in a gap in the spatial dimension parallel to ours. Palkia appears in mythology. 
@@ -45,6 +47,7 @@ const styles = StyleSheet.create({
     gap:20
   },
 
+
  card: {
   backgroundColor: "red",
   width: Platform.select({
@@ -54,6 +57,8 @@ const styles = StyleSheet.create({
   borderRadius: 15,
   alignItems: 'center',
   paddingBottom: 15,
+  borderWidth:10,
+  borderColor:'gray',
 },
 
   nome: {
@@ -78,12 +83,6 @@ conteudo: {
   padding: 10,
   position: "relative",
 },
-
-  imagem: {
-    width: 100,
-    height: 100,
-    marginBottom: 10,
-  },
  tipos: {
   position: 'absolute',
   bottom: 10,
@@ -113,6 +112,15 @@ tipoTexto: {
   fontSize: 12,
   textAlign: 'center',
 },
+fundoimagem:{
+  width:"100%",
+  height:180,
+},
+  imagem: {
+  width: "100%",
+  height: "100%",
+  resizeMode: 'contain',
+  },
   descricao: {
     color: 'white',
     textAlign: 'center',
