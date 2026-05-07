@@ -4,6 +4,7 @@ import { Text, StyleSheet } from 'react-native'; // Import do Input, Dos Estilos
 import Button from '../components/button';
 import { useRouter } from 'expo-router';
 import Navbar from '../components/navbar/Navbar';
+import { Card } from '../components/card';
 
 
 export default function Login () {
@@ -11,15 +12,17 @@ export default function Login () {
 
     return(
         <SafeAreaProvider>
-            <Navbar></Navbar>
-            <SafeAreaView>
-                <Text style = {styles.title}>Acesse Sua Conta!</Text>
-                <Input />
-                <Button
-                onPress={() => router.push('/pokedex')}
-                title="ENTRAR" 
-                style={{marginTop: 10 }} 
-                />
+            <SafeAreaView style = {styles.container}>
+                <Card>
+                    <Text style = {styles.title}>Acesse Sua Conta!</Text>
+                    <Input />
+                    <Button
+                        onPress={() => router.push('/pokedex')}
+                        title="ENTRAR" 
+                        style={{marginTop: 10 }} 
+                    />
+                </Card>
+                
             </SafeAreaView>
         </SafeAreaProvider>
 
@@ -34,5 +37,11 @@ export default function Login () {
             textAlign: 'center', // O Alinhamento do Texto
             marginBottom: 30, // A Distância do Texto em Relação a Parte de Baixo da Tela
             color: '#900f25', // A Cor do Texto
-        }
+        },
+
+        container: {
+            flex: 1,
+            justifyContent: 'center',
+            padding: 20,
+        },
     });
