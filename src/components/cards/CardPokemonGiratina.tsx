@@ -132,14 +132,13 @@ fundoimagem:{
   },
  descricao2: {
     color: 'black',
-    textAlign: 'justify',
     flexWrap:"wrap",
-    padding:10,
     fontSize: Platform.select({
       web:25
     }),
-    position:"absolute",
-    top:190,
-        fontFamily:'Pokemon'
+    textAlign: 'justify',
+    padding: 10,
+    fontFamily:'Pokemon',
+    marginTop: 10,
   },
 });
