@@ -1,6 +1,16 @@
 import { View, Text, StyleSheet, Image, Platform } from 'react-native';
+import { useFonts } from 'expo-font';
 
 export default function CardPokemon() {
+
+   const [fontsLoaded] = useFonts({
+          Pokemon: require('../../assets/fonts/PixelifySans-Regular.ttf'),
+      });
+  
+      if (!fontsLoaded) {
+          return null;
+      }
+
   return (
     
     <View style={styles.container}>
@@ -68,6 +78,7 @@ const styles = StyleSheet.create({
     textShadowColor: 'black',
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 1,
+    fontFamily:'Pokemon'
   },
 
 conteudo: {
