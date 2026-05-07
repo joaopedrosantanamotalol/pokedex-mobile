@@ -119,6 +119,8 @@ fundoimagem:{
   width: "100%",
   height: "100%",
   resizeMode: 'contain',
+  borderWidth:3,
+  borderColor:"lightgray"
   },
   descricao: {
     color: 'white',
