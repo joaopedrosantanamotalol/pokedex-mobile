@@ -12,6 +12,7 @@ export default function Login () {
 
     return(
         <SafeAreaProvider>
+            <Navbar></Navbar>
             <SafeAreaView style = {styles.container}>
                 <Card>
                     <Text style = {styles.title}>Acesse Sua Conta!</Text>
