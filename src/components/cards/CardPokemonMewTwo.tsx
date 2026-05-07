@@ -88,7 +88,7 @@ conteudo: {
 tipo2: {
   width: 80,
   height: 30,
-  backgroundColor: "pink",
+  backgroundColor: "magenta",
   borderRadius: 15,
   justifyContent: "center",
   alignItems: "center",

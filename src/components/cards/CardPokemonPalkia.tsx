@@ -95,7 +95,7 @@ conteudo: {
 tipo: {
   width: 80,
   height: 30,
-  backgroundColor: "lightblue",
+  backgroundColor: "blue",
   borderRadius: 15,
   justifyContent: "center",
   alignItems: "center",
