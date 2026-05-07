@@ -1,16 +1,6 @@
 import { View, Text, StyleSheet, Image, Platform } from 'react-native';
-import { useFonts } from 'expo-font';
 
 export default function CardPokemon() {
-
-   const [fontsLoaded] = useFonts({
-          Pokemon: require('../../assets/fonts/PixelifySans-Regular.ttf'),
-      });
-  
-      if (!fontsLoaded) {
-          return null;
-      }
-
   return (
     
     <View style={styles.container}>
@@ -121,6 +111,7 @@ tipoTexto: {
   color: 'white',
   fontSize: 12,
   textAlign: 'center',
+      fontFamily:'Pokemon'
 },
 fundoimagem:{
   width:"100%",
@@ -136,7 +127,8 @@ fundoimagem:{
   descricao: {
     color: 'white',
     textAlign: 'center',
-    flexWrap:"wrap"
+    flexWrap:"wrap",
+        fontFamily:'Pokemon'
   },
  descricao2: {
     color: 'black',
@@ -147,6 +139,7 @@ fundoimagem:{
       web:25
     }),
     position:"absolute",
-    top:190
+    top:190,
+        fontFamily:'Pokemon'
   },
 });

@@ -68,6 +68,7 @@ const styles = StyleSheet.create({
     textShadowColor: 'black',
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 1,
+        fontFamily:'Pokemon'
   },
 
 conteudo: {
@@ -97,6 +98,7 @@ tipo: {
   borderRadius: 15,
   justifyContent: "center",
   alignItems: "center",
+  
 },
 tipo2: {
   width: 80,
@@ -110,6 +112,7 @@ tipoTexto: {
   color: 'white',
   fontSize: 12,
   textAlign: 'center',
+      fontFamily:'Pokemon'
 },
 fundoimagem:{
   width:"100%",
@@ -125,7 +128,8 @@ fundoimagem:{
   descricao: {
     color: 'white',
     textAlign: 'center',
-    flexWrap:"wrap"
+    flexWrap:"wrap",
+        fontFamily:'Pokemon'
   },
  descricao2: {
     color: 'black',
@@ -135,5 +139,6 @@ fundoimagem:{
     fontSize: Platform.select({
       web:25
     }),
+        fontFamily:'Pokemon'
   },
 });
