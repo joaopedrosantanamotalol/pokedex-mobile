@@ -9,12 +9,14 @@ export default function CardPokemon() {
         <Text style={styles.nome}>GIRATINA</Text>
 
         <View style={styles.conteudo}>
-          
+
+          <View style={styles.fundoimagem}>
           <Image
             source={require('../../assets/images/giratina.png')}
             style={styles.imagem}
           />
-
+          </View>
+          
             <Text style={styles.descricao2}>
               It was banished for its violence. It silently gazed upon the old world from the Distortion World.
             </Text>
@@ -54,6 +56,8 @@ const styles = StyleSheet.create({
   borderRadius: 15,
   alignItems: 'center',
   paddingBottom: 15,
+  borderWidth:10,
+  borderColor:'gray',
 },
 
   nome: {
@@ -78,12 +82,6 @@ conteudo: {
   padding: 10,
   position: "relative",
 },
-
-  imagem: {
-    width: 100,
-    height: 100,
-    marginBottom: 10,
-  },
  tipos: {
   position: 'absolute',
   bottom: 10,
@@ -113,6 +111,17 @@ tipoTexto: {
   fontSize: 12,
   textAlign: 'center',
 },
+fundoimagem:{
+  width:"100%",
+  height:180,
+},
+  imagem: {
+  width: "100%",
+  height: "100%",
+  resizeMode: 'contain',
+  borderWidth:3,
+  borderColor:"lightgray"
+  },
   descricao: {
     color: 'white',
     textAlign: 'center',
@@ -126,5 +135,7 @@ tipoTexto: {
     fontSize: Platform.select({
       web:25
     }),
+    position:"absolute",
+    top:190
   },
 });

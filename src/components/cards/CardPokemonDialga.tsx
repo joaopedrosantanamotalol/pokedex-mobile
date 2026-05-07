@@ -10,10 +10,13 @@ export default function CardPokemonDialga() {
 
         <View style={styles.conteudo}>
           
-          <Image
-            source={require('../../assets/images/Dialga.png')}
-            style={styles.imagem}
-          />
+
+          <View style={styles.fundoimagem}>
+                    <Image
+                      source={require('../../assets/images/Dialga.png')}
+                      style={styles.imagem}
+                    />
+            </View>
 
             <Text style={styles.descricao2}>
              It has the power to control time. It appears in Sinnoh-region myths as an ancient deity. 
@@ -54,6 +57,8 @@ const styles = StyleSheet.create({
   borderRadius: 15,
   alignItems: 'center',
   paddingBottom: 15,
+  borderWidth:10,
+  borderColor:'gray',
 },
   nome: {
     marginVertical: 10,
@@ -77,12 +82,6 @@ conteudo: {
   padding: 10,
   position: "relative",
 },
-
-  imagem: {
-    width: 100,
-    height: 100,
-    marginBottom: 10,
-  },
  tipos: {
   position: 'absolute',
   bottom: 10,
@@ -112,6 +111,17 @@ tipoTexto: {
   fontSize: 12,
   textAlign: 'center',
 },
+fundoimagem:{
+  width:"100%",
+  height:180,
+},
+  imagem: {
+  width: "100%",
+  height: "100%",
+  resizeMode: 'contain',
+  borderWidth:3,
+  borderColor:"lightgray"
+  },
   descricao: {
     color: 'white',
     textAlign: 'center',

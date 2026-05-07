@@ -10,10 +10,12 @@ export default function CardPokemonZekrom() {
 
         <View style={styles.conteudo}>
           
-          <Image
-            source={require('../../assets/images/zekrom.png')}
-            style={styles.imagem}
-          />
+         <View style={styles.fundoimagem}>
+                                      <Image
+                                        source={require('../../assets/images/zekrom.png')}
+                                        style={styles.imagem}
+                                      />
+                       </View>
 
             <Text style={styles.descricao2}>
               This legendary Pokémon can scorch the world with lightning. It assists those who want to build an ideal world. 
@@ -54,6 +56,8 @@ const styles = StyleSheet.create({
   borderRadius: 15,
   alignItems: 'center',
   paddingBottom: 15,
+  borderWidth:10,
+  borderColor:'gray',
 },
 
   nome: {
@@ -78,12 +82,6 @@ conteudo: {
   padding: 10,
   position: "relative",
 },
-
-  imagem: {
-    width: 100,
-    height: 100,
-    marginBottom: 10,
-  },
  tipos: {
   position: 'absolute',
   bottom: 10,
@@ -118,6 +116,17 @@ tipoTexto2: {
   fontSize: 12,
   textAlign: 'center',
 },
+fundoimagem:{
+  width:"100%",
+  height:180,
+},
+  imagem: {
+  width: "100%",
+  height: "100%",
+  resizeMode: 'contain',
+  borderWidth:3,
+  borderColor:"lightgray"
+  },
   descricao: {
     color: 'white',
     textAlign: 'center',
