@@ -84,11 +84,10 @@ conteudo: {
   position: "relative",
 },
  tipos: {
-  position: 'absolute',
-  bottom: 10,
-  right: 10,
   flexDirection: 'row',
   gap: 5,
+  marginTop: 'auto',
+  alignSelf: 'flex-end',
 },
 
 tipo: {
