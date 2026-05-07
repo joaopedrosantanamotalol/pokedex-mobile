@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
   paddingBottom: 15,
   borderWidth:10,
   borderColor:'gray',
+  height:"auto"
 },
 
   nome: {
