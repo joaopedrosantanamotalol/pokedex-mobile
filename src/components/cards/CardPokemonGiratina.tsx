@@ -83,6 +83,7 @@ conteudo: {
   alignItems: 'center',
   padding: 10,
   position: "relative",
+  justifyContent: 'space-between',
 },
  tipos: {
   flexDirection: 'row',
