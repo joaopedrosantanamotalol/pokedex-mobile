@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image, Platform, PlatformColor } from 'react-native';
+import { View, Text, StyleSheet, Image, Platform } from 'react-native';
 
 export default function CardPokemonDialga() {
   return (
@@ -19,7 +19,7 @@ export default function CardPokemonDialga() {
             </View>
 
             <Text style={styles.descricao2}>
-             It has the power to control time. It appears in Sinnoh-region myths as an ancient deity. 
+             Possui incriveis habilidades de controle temporal.
             </Text>
             <View style={styles.tipos}>
                 <View style={styles.tipo}>
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   },
 
  card: {
-  backgroundColor: "red",
+  backgroundColor: "#A82223",
   width: Platform.select({
     web: 500,
     default: 300,

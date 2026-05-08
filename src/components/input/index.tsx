@@ -1,49 +1,69 @@
-import { TextInput, StyleSheet } from 'react-native'; // Import do Input, Dos Estilos e do Texto Diretamente do React
-import { useState } from 'react'; // Import do Gerenciador de Estados Nativo do React
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { TextInput, StyleSheet, View, Platform } from 'react-native';
 
-export default function Input() {
+type Props = {
+  nome: string;
+  senha: string;
+  setNome: (text: string) => void;
+  setSenha: (text: string) => void;
+};
 
-    const [nome, setNome] = useState('');
-    const [senha, setSenha] = useState('');
+export default function Input({
+  nome,
+  senha,
+  setNome,
+  setSenha,
+}: Props) {
+  return (
+    <View style={styles.container}>
+      <TextInput
+        style={styles.input}
+        value={nome}
+        onChangeText={setNome}
+        placeholder="Treinador"
+        placeholderTextColor="#aaa"
+        autoCapitalize="none"
+      />
 
-    return(
-        <SafeAreaProvider>
-            <SafeAreaView style = {styles.container}>
-                <TextInput
-                    style= {styles.input}
-                    value={nome}
-                    onChangeText={setNome}
-                    placeholder="Nome"
-                />
-
-                <TextInput
-                    style= {styles.input}
-                    value={senha}
-                    onChangeText={setSenha}
-                    placeholder="Senha"
-                />
-
-            </SafeAreaView>
-        </SafeAreaProvider>
-    )
-
+      <TextInput
+        style={styles.input}
+        value={senha}
+        onChangeText={setSenha}
+        placeholder="Senha"
+        placeholderTextColor="#aaa"
+        secureTextEntry
+        autoCapitalize="none"
+      />
+    </View>
+  );
 }
 
-    const styles = StyleSheet.create({
-        container: {
-            flex: 1,
-            justifyContent: 'center',
-            padding: 20,
-        },
+const styles = StyleSheet.create({
+  container: {
+    gap: Platform.select({
+      web: 12,
+      default: 8,
+    }),
+  },
 
-        input: { // Estilização Dos Campos Para Dados na Tela
-            width: '100%', // Quanto Horizontalmente o Input Vai Ocupar
-            borderWidth: 1, // A Espessura da Borda
-            borderColor: '#960018', // A Cor da Borda
-            borderRadius: 15, // O Quão Arredondado Serão as Bordas
-            color: '#424141c4', // A Cor do Texto Dentro do Input
-            padding: 12, // A Distância do Centro em Relação as 4 Bordas
-            marginBottom: 15, // A Distância Vertical Entre os 2 Inputs e o Botão
-        },
-    });
+  input: {
+    width: '100%',
+    borderWidth: 1.5,
+    borderColor: '#A82223',
+    borderRadius: 12,
+
+    color: '#333',
+
+    padding: Platform.select({
+      web: 12,
+      default: 10,
+    }),
+
+    fontSize: Platform.select({
+      web: 15,
+      default: 14,
+    }),
+
+    backgroundColor: '#fff',
+    fontFamily: 'Pokemon',
+  },
+});

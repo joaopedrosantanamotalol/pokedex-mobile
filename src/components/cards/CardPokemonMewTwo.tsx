@@ -17,7 +17,7 @@ export default function CardPokemonMewTwo() {
                     />
             </View>
             <Text style={styles.descricao2}>
-              Its DNA is almost the same as Mew’s. However, its size and disposition are vastly different. 
+              Apesar do seu DNA idêntico ao de Mew, suas habilidades são muito mais poderosas.
             </Text>
             <View style={styles.tipos}>
 
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   },
 
  card: {
-  backgroundColor: "red",
+  backgroundColor: "#A82223",
   width: Platform.select({
     web: 500,
     default: 300,

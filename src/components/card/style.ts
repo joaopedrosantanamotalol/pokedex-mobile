@@ -1,17 +1,23 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 
 export const styles = StyleSheet.create({
   card: {
     backgroundColor: '#FFF',
-    borderRadius: 12,
-    padding: 50,
-    gap: 16,
+    borderRadius: 16,
+    padding: Platform.select({
+      web: 40,      // padding generoso no browser
+      default: 28,  // menor no celular para não comprimir o conteúdo
+    }),
+    gap: Platform.select({
+      web: 16,
+      default: 10,
+    }),
 
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.12,
+    shadowRadius: 8,
 
-    elevation: 4, 
+    elevation: 6,
   },
 });

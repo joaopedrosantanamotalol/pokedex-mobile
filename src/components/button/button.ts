@@ -4,7 +4,7 @@ export const styles = StyleSheet.create({
     button: {
         width: '100%', // O Quão Largo o Botão é Horizontalmente
         height: 60, // O Quão Largo o Botão é Verticalmente
-        backgroundColor: '#960018', // A Cor Primária do Botão
+        backgroundColor: '#A82223', // A Cor Primária do Botão
         marginLeft: Platform.select({
             web: 0,
             default: 0
@@ -15,7 +15,8 @@ export const styles = StyleSheet.create({
     },
     title: {
         color: '#e9e9e9', // A Cor do Título
-        fontSize: 16, // O Tamanho do Título
+        fontSize: 20, // O Tamanho do Título
         fontWeight: 'bold', // O Quão Forte é o Traço do Texto
+        fontFamily:'Pokemon',
     }
 })

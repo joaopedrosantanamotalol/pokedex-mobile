@@ -18,7 +18,7 @@ export default function CardPokemonPalkia() {
               </View>
 
             <Text style={styles.descricao2}>
-             It is said to live in a gap in the spatial dimension parallel to ours. Palkia appears in mythology. 
+             Um lendário Pokemon mitológico, diz-se que vive em sua própria dimensão.
             </Text>
             <View style={styles.tipos}>
                 <View style={styles.tipo}>
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
 
 
  card: {
-  backgroundColor: "red",
+  backgroundColor: "#A82223",
   width: Platform.select({
     web: 500,
     default: 300,

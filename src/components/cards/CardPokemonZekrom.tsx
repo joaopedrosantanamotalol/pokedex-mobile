@@ -18,7 +18,7 @@ export default function CardPokemonZekrom() {
                        </View>
 
             <Text style={styles.descricao2}>
-              This legendary Pokémon can scorch the world with lightning. It assists those who want to build an ideal world. 
+              Um dos mais fortes Pokemon lendários, capaz de destruir o mundo com seus raios.
             </Text>
             <View style={styles.tipos}>
                 <View style={styles.tipo}>
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   },
 
  card: {
-  backgroundColor: "red",
+  backgroundColor: "#A82223",
   width: Platform.select({
     web: 500,
     default: 300,

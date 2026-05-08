@@ -18,7 +18,7 @@ export default function CardPokemon() {
           </View>
           
             <Text style={styles.descricao2}>
-              It was banished for its violence. It silently gazed upon the old world from the Distortion World.
+              Banido do Mundo Antigo por sua excessiva violência.
             </Text>
             <View style={styles.tipos}>
                 <View style={styles.tipo}>
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   },
 
  card: {
-  backgroundColor: "red",
+  backgroundColor: "#A82223",
   width: Platform.select({
     web: 500,
     default: 300,

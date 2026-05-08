@@ -1,48 +1,123 @@
-import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context'; 
+import { useState } from 'react';
+
+import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
+
+import {
+  Text,
+  StyleSheet,
+  View,
+  Platform,
+  ImageBackground,
+  Alert,
+} from 'react-native';
+
 import Input from '../components/input';
-import { Text, StyleSheet } from 'react-native'; // Import do Input, Dos Estilos e do Texto Diretamente do React
 import Button from '../components/button';
+
 import { useRouter } from 'expo-router';
+
 import Navbar from '../components/navbar/Navbar';
 import { Card } from '../components/card';
 
+export default function Login() {
+  const router = useRouter();
 
-export default function Login () {
-     const router = useRouter();
+  const [nome, setNome] = useState('');
+  const [senha, setSenha] = useState('');
 
-    return(
-        <SafeAreaProvider>
-            <Navbar></Navbar>
-            <SafeAreaView style = {styles.container}>
-                <Card>
-                    <Text style = {styles.title}>Acesse Sua Conta!</Text>
-                    <Input />
-                    <Button
-                        onPress={() => router.push('/pokedex')}
-                        title="ENTRAR" 
-                        style={{marginTop: 10 }} 
-                    />
-                </Card>
-                
-            </SafeAreaView>
-        </SafeAreaProvider>
-
-    )
+ function validateLogin() {
+  if (nome === 'ash' && senha === 'pikachu') {
+    router.push('/pokedex');
+  } else {
+    if (Platform.OS === 'web') {
+      window.alert('Usuário ou senha inválidos.');
+    } else {
+      Alert.alert('Erro de Login', 'Usuário ou senha inválidos.');
+    }
+  }
 }
 
-    const styles = StyleSheet.create({
-        title: {
-            fontSize: 28, // O Tamanho do Texto
-            fontFamily: 'Arial', // Fonte Que o Texto Terá
-            fontWeight: 'bold', // O Quão Forte é o Traço do Texto
-            textAlign: 'center', // O Alinhamento do Texto
-            marginBottom: 30, // A Distância do Texto em Relação a Parte de Baixo da Tela
-            color: '#900f25', // A Cor do Texto
-        },
+  return (
+    <SafeAreaProvider style={{ flex: 1 }}>
+      <ImageBackground
+        source={require('../assets/images/background.jpg')}
+        style={styles.background}
+        resizeMode="cover"
+      >
+        <Navbar />
 
-        container: {
-            flex: 1,
-            justifyContent: 'center',
-            padding: 20,
-        },
-    });
+        <SafeAreaView style={styles.container}>
+          <View style={styles.overlay} />
+
+          <View style={styles.cardWrapper}>
+            <Card>
+              <Text style={styles.title}>Acessar Pokédex</Text>
+
+              <Input
+                nome={nome}
+                senha={senha}
+                setNome={setNome}
+                setSenha={setSenha}
+              />
+
+              <Button
+                onPress={validateLogin}
+                title="ENTRAR"
+                style={{ marginTop: 10 }}
+              />
+            </Card>
+          </View>
+        </SafeAreaView>
+      </ImageBackground>
+    </SafeAreaProvider>
+  );
+}
+
+const styles = StyleSheet.create({
+  background: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+  },
+
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+
+    padding: Platform.select({
+      web: 40,
+      default: 20,
+    }),
+  },
+
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(255,255,255,0.65)',
+  },
+
+  cardWrapper: {
+    width: Platform.select({
+      web: 420,
+      default: '100%',
+    }),
+  },
+
+  title: {
+    fontSize: Platform.select({
+      web: 26,
+      default: 22,
+    }),
+
+    fontFamily: 'Pokemon',
+    fontWeight: 'bold',
+    textAlign: 'center',
+
+    marginBottom: Platform.select({
+      web: 20,
+      default: 12,
+    }),
+
+    color: '#A82223',
+  },
+});
