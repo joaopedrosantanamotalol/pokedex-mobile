@@ -1,5 +1,7 @@
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import Navbar from '../components/navbar/Navbar';
+import { Redirect } from 'expo-router';
+import { useAuth } from './authContext';
 
 import CardPokemonGiratina from '../components/cards/CardPokemonGiratina';
 import CardPokemonPalkia from '../components/cards/CardPokemonPalkia';
@@ -15,6 +17,13 @@ import {
 } from 'react-native';
 
 export default function Pokedex() {
+
+  const { authenticated } = useAuth();
+
+if (!authenticated) {
+  return <Redirect href="/login" />;
+}
+
   return (
     <SafeAreaProvider style={{ flex: 1 }}>
       <ImageBackground

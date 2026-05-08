@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
+import { useAuth } from './authContext';
 
 import {
   Text,
@@ -21,19 +22,26 @@ import { Card } from '../components/card';
 
 export default function Login() {
   const router = useRouter();
+  const { login } = useAuth();
 
   const [nome, setNome] = useState('');
   const [senha, setSenha] = useState('');
 
- function validateLogin() {
+async function validateLogin() {
   if (nome === 'ash' && senha === 'pikachu') {
-    router.push('/pokedex');
+
+    await login();
+
+    router.replace('/pokedex');
+
   } else {
+
     if (Platform.OS === 'web') {
       window.alert('Usuário ou senha inválidos.');
     } else {
       Alert.alert('Erro de Login', 'Usuário ou senha inválidos.');
     }
+
   }
 }
 
