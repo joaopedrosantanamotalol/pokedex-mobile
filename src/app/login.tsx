@@ -103,13 +103,10 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     backgroundColor: 'rgba(255,255,255,0.65)',
   },
-
-  cardWrapper: {
-    width: Platform.select({
-      web: 420,
-      default: '100%',
-    }),
-  },
+cardWrapper: {
+  width: '100%',
+  maxWidth: 420,
+},
 
   title: {
     fontSize: Platform.select({

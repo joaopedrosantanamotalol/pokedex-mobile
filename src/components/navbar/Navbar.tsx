@@ -50,8 +50,16 @@ const styles = StyleSheet.create({
     letterSpacing: 3,
     fontFamily:'Pokemon',
 
-    textShadowColor: 'rgba(0,0,0,0.4)',
-    textShadowOffset: { width: 1, height: 2 },
+    textShadowColor: 'rgba(0,0,0,0.8)',
+    textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 3,
   },
+  circle: {
+    width: "40%",
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: 'white',
+    justifyContent:'center',
+    alignItems:"center"
+},
 });
