@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
       default: 20,
     }),
     fontWeight: 'bold',
-    color: '#fff',
+    color: '#000',
     letterSpacing: 3,
     fontFamily:'Pokemon',
 
