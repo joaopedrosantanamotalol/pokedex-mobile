@@ -18,7 +18,7 @@ import Button from '../components/button';
 import { useRouter } from 'expo-router';
 
 import Navbar from '../components/navbar/Navbar';
-import { Card } from '../components/card';
+import { Card } from '../components/card/index';
 
 export default function Login() {
   const router = useRouter();
