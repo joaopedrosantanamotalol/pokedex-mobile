@@ -8,7 +8,6 @@ const api = axios.create({
 const getStat = (stats: any[], nome: string): number =>
   stats.find((s: any) => s.stat.name === nome)?.base_stat ?? 0;
 
-// Pega pt-BR ou pt da API, com fallback para inglês
 const getTextoDescricao = (entries: any[]): string => {
   const pt = entries.find(
     (e: any) => e.language.name === 'pt-BR' || e.language.name === 'pt'

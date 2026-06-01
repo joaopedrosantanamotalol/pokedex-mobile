@@ -5,8 +5,8 @@ export const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     borderRadius: 16,
     padding: Platform.select({
-      web: 40,      // padding generoso no browser
-      default: 28,  // menor no celular para não comprimir o conteúdo
+      web: 40,      
+      default: 28, 
     }),
     gap: Platform.select({
       web: 16,

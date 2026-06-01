@@ -32,7 +32,6 @@ export const styles = StyleSheet.create({
     borderRadius: 15,
     alignItems: 'center',
     padding: 10,
-    // removido minHeight e position: relative — o card agora cresce com o conteúdo
   },
 
   fundoimagem: {
@@ -59,11 +58,9 @@ export const styles = StyleSheet.create({
       default: 13,
     }),
     fontFamily: 'Pokemon',
-    // limita a 3 linhas
     numberOfLines: 3,
   },
 
-  // ── Stats ────────────────────────────────────────────────────────────────
   statsContainer: {
     width: '100%',
     marginTop: 8,
@@ -107,7 +104,6 @@ export const styles = StyleSheet.create({
     borderRadius: 6,
   },
 
-  // ── Tipos — agora em fluxo normal, abaixo das barras ─────────────────────
   tipos: {
     flexDirection: 'row',
     flexWrap: 'wrap',

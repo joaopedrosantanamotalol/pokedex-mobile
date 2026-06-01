@@ -15,7 +15,6 @@ const corDaBarra = (valor: number): string => {
   return '#F44336';
 };
 
-// Dicionário local — a PokeAPI não tem pt-BR para tipos
 export const TIPOS_PT: Record<string, string> = {
   normal:   'Normal',
   fire:     'Fogo',
@@ -90,7 +89,6 @@ export default function CardPokemon({ pokemon, corCard }: Props) {
             <StatRow label="SP.D" valor={pokemon.stats.spdDef} />
           </View>
 
-          {/* Tipos abaixo das barras, sem position absolute */}
           <View style={styles.tipos}>
             {pokemon.tipos.map((tipo, index) => (
               <View key={index} style={[styles.tipo, { backgroundColor: corCard }]}>

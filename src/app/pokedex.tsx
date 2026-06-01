@@ -16,7 +16,6 @@ import {
   Text,
 } from 'react-native';
 
-// Cores por tipo — mesma paleta usada em jogos oficiais
 const TIPO_CORES: Record<string, string> = {
   fire: '#F08030',
   water: '#6890F0',
