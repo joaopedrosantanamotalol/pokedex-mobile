@@ -27,56 +27,104 @@ export const styles = StyleSheet.create({
   },
 
   conteudo: {
-    backgroundColor: "white",
+    backgroundColor: 'white',
     width: '90%',
-    minHeight: Platform.select({
-      web: 500,
-      default: 340,
-    }),
     borderRadius: 15,
     alignItems: 'center',
     padding: 10,
-    position: "relative",
+    // removido minHeight e position: relative — o card agora cresce com o conteúdo
   },
 
   fundoimagem: {
-    width: "100%",
+    width: '100%',
     height: 180,
   },
 
   imagem: {
-    width: "100%",
-    height: "100%",
+    width: '100%',
+    height: '100%',
     resizeMode: 'contain',
     borderWidth: 3,
-    borderColor: "lightgray",
+    borderColor: 'lightgray',
   },
 
   descricao: {
     color: 'black',
     textAlign: 'justify',
-    padding: 10,
+    paddingHorizontal: 10,
+    paddingTop: 10,
+    paddingBottom: 4,
     fontSize: Platform.select({
-      web: 25,
-      default: 16,
+      web: 16,
+      default: 13,
     }),
     fontFamily: 'Pokemon',
+    // limita a 3 linhas
+    numberOfLines: 3,
   },
 
-  tipos: {
-    position: 'absolute',
-    bottom: 10,
-    right: 10,
+  // ── Stats ────────────────────────────────────────────────────────────────
+  statsContainer: {
+    width: '100%',
+    marginTop: 8,
+    paddingHorizontal: 6,
+    gap: 6,
+  },
+
+  statRow: {
     flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+
+  statLabel: {
+    fontFamily: 'Pokemon',
+    fontSize: Platform.select({ web: 13, default: 11 }),
+    color: '#555',
+    width: Platform.select({ web: 42, default: 36 }),
+    textAlign: 'right',
+  },
+
+  statValue: {
+    fontFamily: 'Pokemon',
+    fontSize: Platform.select({ web: 14, default: 12 }),
+    color: '#222',
+    width: Platform.select({ web: 32, default: 26 }),
+    textAlign: 'right',
+    fontWeight: 'bold',
+  },
+
+  barraFundo: {
+    flex: 1,
+    height: Platform.select({ web: 12, default: 9 }),
+    backgroundColor: '#E8E8E8',
+    borderRadius: 6,
+    overflow: 'hidden',
+  },
+
+  barraPreenchimento: {
+    height: '100%',
+    borderRadius: 6,
+  },
+
+  // ── Tipos — agora em fluxo normal, abaixo das barras ─────────────────────
+  tipos: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'flex-end',
     gap: 5,
+    marginTop: 12,
+    marginBottom: 4,
+    width: '100%',
+    paddingHorizontal: 6,
   },
 
   tipo: {
-    width: 80,
+    paddingHorizontal: 14,
     height: 30,
     borderRadius: 15,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
   tipoTexto: {
@@ -85,31 +133,4 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'Pokemon',
   },
-statsContainer: {
-  width: '100%',
-  marginTop: 10,
-  paddingHorizontal: 10,
-  flexDirection: 'row',
-  flexWrap: 'wrap',
-  justifyContent: 'space-between',
-},
-
-stat: {
-  width: '30%',
-  alignItems: 'center',
-  marginBottom: 8,
-},
-
-statLabel: {
-  fontFamily: 'Pokemon',
-  fontSize: 12,
-  color: '#555',
-},
-
-statValue: {
-  fontFamily: 'Pokemon',
-  fontSize: 14,
-  color: '#000',
-},
-
 });

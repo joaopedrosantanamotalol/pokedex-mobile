@@ -13,4 +13,5 @@ export interface Pokemon {
   imagem: string;
   tipos: string[];
   stats: Stats;
+  descricao?: string;
 }
