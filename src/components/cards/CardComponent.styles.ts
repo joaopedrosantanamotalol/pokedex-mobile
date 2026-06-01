@@ -85,4 +85,31 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'Pokemon',
   },
+statsContainer: {
+  width: '100%',
+  marginTop: 10,
+  paddingHorizontal: 10,
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  justifyContent: 'space-between',
+},
+
+stat: {
+  width: '30%',
+  alignItems: 'center',
+  marginBottom: 8,
+},
+
+statLabel: {
+  fontFamily: 'Pokemon',
+  fontSize: 12,
+  color: '#555',
+},
+
+statValue: {
+  fontFamily: 'Pokemon',
+  fontSize: 14,
+  color: '#000',
+},
+
 });

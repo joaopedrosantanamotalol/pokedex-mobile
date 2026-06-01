@@ -3,11 +3,11 @@ import Navbar from '../components/navbar/Navbar';
 import { Redirect } from 'expo-router';
 import { useAuth } from './authContext';
 
-import Card from '../components/cards/CardComponent';
+import CardPokemon from '../components/cards/CardComponent';
 import {
   ScrollView,
   View,
-  StyleSheet,
+  StyleSheet, 
   ImageBackground,
 } from 'react-native';
 
@@ -35,65 +35,153 @@ if (!authenticated) {
           <ScrollView contentContainerStyle={styles.scrollContent}>
             <View style={styles.container}>
 
-              <Card
 
-              nome="DIALGA"
-              imagem={require('../assets/images/Dialga.png')}
-              descricao="Possui incríveis habilidades de controle temporal."
-              corCard="#A82223"
-              tipos={[
-              { nome: 'AÇO', cor: 'gray' },
-              { nome: 'DRAGÃO', cor: 'orange' },
-              ]}
-              />
+const pokemons = [
+  {
+    index: "150",
+    nome: "Mewtwo",
+    imagem:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/150.png",
+    tipos: ["Psíquico"],
+    stats: {
+      hp: 106,
+      atk: 110,
+      def: 90,
+      spd: 130,
+      spa: 154,
+      spdDef: 90,
+    },
+    descricao: "Seu DNA é quase idêntico ao de Mew.",
+  },
 
-              <Card
+  {
+    index: "483",
+    nome: "Dialga",
+    imagem:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/483.png",
+    tipos: ["Aço", "Dragão"],
+    stats: {
+      hp: 100,
+      atk: 120,
+      def: 120,
+      spd: 90,
+      spa: 150,
+      spdDef: 100,
+    },
+    descricao: "Possui incríveis habilidades de controle temporal.",
+  },
 
-              nome="MEWTWO"
-              imagem={require('../assets/images/MewTwo.png')}
-              descricao="Seu DNA é quase idêntico ao de Mew. No entanto, seu tamanho e temperamento são muito diferentes."
-              corCard="#A82223"
-              tipos={[
-              { nome: 'PSÍQUICO', cor: 'pink' },
-              ]}
-              />
+  {
+    index: "487",
+    nome: "Giratina",
+    imagem:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/487.png",
+    tipos: ["Fantasma", "Dragão"],
+    stats: {
+      hp: 150,
+      atk: 100,
+      def: 120,
+      spd: 90,
+      spa: 100,
+      spdDef: 120,
+    },
+    descricao:
+      "Diz-se que este Pokémon vive em um mundo inverso ao nosso.",
+  },
+];
+
+            <View style={styles.container}>
+  {pokemons.map((pokemon) => (
+    <CardPokemon
+      key={pokemon.index}
+      pokemon={pokemon}
+      corCard="#B22222"
+      descricao={pokemon.descricao}
+    />
+  ))}
+</View>
+
+              <CardPokemon
+  corCard="#B22222"
+  pokemon={{
+    index: "150",
+    nome: "Mewtwo",
+    imagem:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/150.png",
+    tipos: ["Psíquico"],
+    poderes: [
+      {
+        nome: "Confusão",
+        forca: 50,
+      },
+      {
+        nome: "Psíquico",
+        forca: 90,
+      },
+      {
+        nome: "Aura Sphere",
+        forca: 80,
+      },
+    ],
+  }}
+/>
 
 
-              <Card
+              <CardPokemon
+  corCard="#B22222"
+  pokemon={{
+    index: "150",
+    nome: "Mewtwo",
+    imagem:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/150.png",
+    tipos: ["Psíquico"],
+    poderes: [
+      {
+        nome: "Confusão",
+        forca: 50,
+      },
+      {
+        nome: "Psíquico",
+        forca: 90,
+      },
+      {
+        nome: "Aura Sphere",
+        forca: 80,
+      },
+    ],
+  }}
+/>
 
-              nome="GIRATINA"
-              imagem={require('../assets/images/giratina.png')}
-              descricao="Diz-se que este Pokémon vive em um mundo inverso ao nosso, onde o conhecimento comum é distorcido e estranho."
-              corCard="#A82223"
-              tipos={[
-              { nome: 'FANTASMA', cor: 'purple' },
-              { nome: 'DRAGÃO', cor: 'orange' },
-              ]}
-              />
+            <CardPokemon
+  corCard="#B22222"
+  pokemon={{
+    index: "150",
+    nome: "Mewtwo",
+    imagem:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/150.png",
+    tipos: ["Psíquico"],
+    poderes: [
+      {
+        nome: "Confusão",
+        forca: 50,
+      },
+      {
+        nome: "Psíquico",
+        forca: 90,
+      },
+      {
+        nome: "Aura Sphere",
+        forca: 80,
+      },
+    ],
+  }}
+/>
 
-              <Card
-
-              nome="PALKIA"
-              imagem={require('../assets/images/palkia.png')}
-              descricao="Possui a capacidade de distorcer o espaço. É descrito como uma divindade na mitologia da região de Sinnoh."
-              corCard="#A82223"
-              tipos={[
-              { nome: 'AGUA', cor: 'light_blue' },
-              { nome: 'DRAGÃO', cor: 'orange' },
-              ]}
-              />
-
-              <Card
-
-              nome="ZEKROM"
-              imagem={require('../assets/images/zekrom.png')}
-              descricao="Este Pokémon lendário pode incendiar o mundo com raios. Ele auxilia aqueles que desejam construir um mundo ideal."
-              corCard="#A82223"
-              tipos={[
-              { nome: 'DRAGÃO', cor: 'orange' },
-              { nome: 'ELÉTRICO', cor: 'yellow' },
-              ]}
-              />
+  <CardPokemon
+  pokemon={pokemon}
+  corCard="#B22222"
+  descricao="Possui incríveis habilidades de controle temporal."
+/>
 
             </View>
           </ScrollView>
