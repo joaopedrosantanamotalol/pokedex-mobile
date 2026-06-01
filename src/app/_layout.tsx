@@ -34,6 +34,11 @@ export default function RootLayout() {
           name="team"
           options={{ title: 'Time', headerShown: false }}
         />
+
+        <Stack.Screen
+          name="profile"
+          options={{ title: 'Perfil', headerShown: false }}
+        />
       </Stack>
     </AuthProvider>
   );
