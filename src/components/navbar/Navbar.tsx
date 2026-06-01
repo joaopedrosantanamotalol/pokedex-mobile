@@ -11,10 +11,10 @@ import {
 import { useRouter } from 'expo-router';
 
 const MENU_ITEMS = [
-  { label: 'Perfil',   route: '/perfil'   },
-  { label: 'Time',     route: '/time'     },
+  { label: 'Perfil',   route: '/profile'   },
+  { label: 'Time',     route: '/team'     },
   { label: 'Pokédex',  route: '/pokedex'  },
-  { label: 'Batalha',  route: '/batalha'  },
+  { label: 'Batalha',  route: '/battle'  },
 ];
 
 export default function Navbar() {
@@ -27,10 +27,8 @@ export default function Navbar() {
   };
 
   return (
-    // Wrapper relativo para o dropdown ficar posicionado em relação à navbar
     <View style={styles.wrapper}>
       <View style={styles.navbar}>
-        {/* Botão sanduíche — esquerda */}
         <TouchableOpacity
           style={styles.menuBtn}
           onPress={() => setAberto((v) => !v)}
@@ -38,28 +36,22 @@ export default function Navbar() {
           accessibilityLabel="Abrir menu de navegação"
           accessibilityRole="button"
         >
-          {/* As três linhas do sanduíche */}
           <View style={[styles.linha, aberto && styles.linhaAberta1]} />
           <View style={[styles.linha, aberto && styles.linhaAberta2]} />
           <View style={[styles.linha, aberto && styles.linhaAberta3]} />
         </TouchableOpacity>
 
-        {/* Título centralizado */}
         <View style={styles.circle}>
           <Text style={styles.title}>POKÉDEX</Text>
         </View>
 
-        {/* Espaço vazio para equilibrar o botão e manter o título centrado */}
         <View style={styles.menuBtn} />
       </View>
 
-      {/* Faixa preta decorativa */}
       <View style={styles.strip} />
 
-      {/* Dropdown — aparece abaixo da navbar */}
       {aberto && (
         <>
-          {/* Overlay transparente para fechar ao clicar fora */}
           <Pressable style={styles.overlay} onPress={() => setAberto(false)} />
 
           <View style={styles.dropdown}>
@@ -86,7 +78,6 @@ export default function Navbar() {
 const styles = StyleSheet.create({
   wrapper: {
     zIndex: 100,
-    // No web o zIndex precisa de contexto de empilhamento
     ...Platform.select({ web: { position: 'relative' as const } }),
   },
 
@@ -130,7 +121,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
-  // Botão sanduíche
   menuBtn: {
     width: 44,
     height: 44,
@@ -146,7 +136,6 @@ const styles = StyleSheet.create({
     borderRadius: 2,
   },
 
-  // Quando aberto, a linha do meio some (opacity) e as outras giram
   linhaAberta1: {
     transform: [{ rotate: '45deg' }, { translateY: 9 }],
   },
@@ -157,7 +146,6 @@ const styles = StyleSheet.create({
     transform: [{ rotate: '-45deg' }, { translateY: -9 }],
   },
 
-  // Dropdown
   overlay: {
     position: 'absolute',
     top: Platform.select({ web: 124, default: 104 }),

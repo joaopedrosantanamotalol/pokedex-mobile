@@ -29,6 +29,11 @@ export default function RootLayout() {
           name="login"
           options={{ title: 'Login', headerShown: false }}
         />
+
+        <Stack.Screen
+          name="team"
+          options={{ title: 'Time', headerShown: false }}
+        />
       </Stack>
     </AuthProvider>
   );
