@@ -8,7 +8,7 @@ export default function Index () {
         <Navbar></Navbar>
         <SafeAreaProvider>
             <SafeAreaView>
-                <Redirect href="/login"></Redirect>
+                <Redirect href="/cadastro"></Redirect>
             </SafeAreaView>
         </SafeAreaProvider>
 

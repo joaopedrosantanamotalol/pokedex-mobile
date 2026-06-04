@@ -39,6 +39,12 @@ export default function RootLayout() {
           name="profile"
           options={{ title: 'Perfil', headerShown: false }}
         />
+
+        <Stack.Screen
+          name="cadastro"
+          options={{ title: 'Cadastro', headerShown: false }}
+        />
+
       </Stack>
     </AuthProvider>
   );

@@ -20,29 +20,28 @@ import { useRouter } from 'expo-router';
 import Navbar from '../components/navbar/Navbar';
 import { Card } from '../components/card/index';
 
-export default function Login() {
+export default function Cadastro() {
   const router = useRouter();
   const { login } = useAuth();
 
   const [nome, setNome] = useState('');
-  const [senha, setSenha] = useState('');
   const [senha2, setSenha2] = useState('');
+  const [senha, setSenha] = useState('');
 
-async function validateLogin() {
-  if (nome === 'ash' && senha === 'pikachu') {
-
+async function validateRegister() {
+  if (
+    senha === senha2 &&
+    senha !== null &&
+    senha.trim() !== ""
+  ) {
     await login();
-
-    router.replace('/pokedex');
-
+    router.replace('/login');
   } else {
-
     if (Platform.OS === 'web') {
-      window.alert('Usuário ou senha inválidos.');
+      window.alert('As senhas são inválidas.');
     } else {
-      Alert.alert('Erro de Login', 'Usuário ou senha inválidos.');
+      Alert.alert('Erro', 'As senhas são inválidas.');
     }
-
   }
 }
 
@@ -65,12 +64,14 @@ async function validateLogin() {
               <Input
                 nome={nome}
                 senha={senha}
+                senha2={senha2}
+                setSenha2={setSenha2}
                 setNome={setNome}
                 setSenha={setSenha}
               />
 
               <Button
-                onPress={validateLogin}
+                onPress={validateRegister}
                 title="ENTRAR"
                 style={{ marginTop: 10 }}
               />
