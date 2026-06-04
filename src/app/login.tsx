@@ -29,20 +29,19 @@ export default function Login() {
   const [senha2, setSenha2] = useState('');
 
 async function validateLogin() {
-  if (nome === 'ash' && senha === 'pikachu') {
-
+  if (
+    senha === senha2 &&
+    senha !== null &&
+    senha.trim() !== ""
+  ) {
     await login();
-
     router.replace('/pokedex');
-
   } else {
-
     if (Platform.OS === 'web') {
-      window.alert('Usuário ou senha inválidos.');
+      window.alert('As senhas são inválidas.');
     } else {
-      Alert.alert('Erro de Login', 'Usuário ou senha inválidos.');
+      Alert.alert('Erro', 'As senhas são inválidas.');
     }
-
   }
 }
 
@@ -65,8 +64,10 @@ async function validateLogin() {
               <Input
                 nome={nome}
                 senha={senha}
+                senha2={senha2}
                 setNome={setNome}
                 setSenha={setSenha}
+                setSenha2={setSenha2}
               />
 
               <Button

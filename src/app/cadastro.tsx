@@ -59,7 +59,7 @@ async function validateRegister() {
 
           <View style={styles.cardWrapper}>
             <Card>
-              <Text style={styles.title}>Acessar Pokédex</Text>
+              <Text style={styles.title}>Comece a sua jornada !</Text>
 
               <Input
                 nome={nome}

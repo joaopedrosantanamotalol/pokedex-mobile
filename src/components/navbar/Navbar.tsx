@@ -1,14 +1,14 @@
+import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import {
-  View,
-  Text,
-  StyleSheet,
   Platform,
-  TouchableOpacity,
-  Animated,
   Pressable,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native';
-import { useRouter } from 'expo-router';
+import { useAuth } from '../../app/authContext';
 
 const MENU_ITEMS = [
   { label: 'Perfil',   route: '/profile'   },
@@ -21,10 +21,16 @@ const MENU_ITEMS = [
 export default function Navbar() {
   const [aberto, setAberto] = useState(false);
   const router = useRouter();
+  const { logout } = useAuth();
 
   const navegar = (route: string) => {
     setAberto(false);
     router.push(route as any);
+  };
+
+  const sair = async () => {
+    await logout();
+    router.replace('/login' as any);
   };
 
   return (
@@ -46,7 +52,15 @@ export default function Navbar() {
           <Text style={styles.title}>POKÉDEX</Text>
         </View>
 
-        <View style={styles.menuBtn} />
+        <TouchableOpacity
+          style={styles.logoutBtn}
+          onPress={sair}
+          activeOpacity={0.7}
+          accessibilityLabel="Sair e voltar para o login"
+          accessibilityRole="button"
+        >
+          <Text style={styles.logoutText}>SAIR</Text>
+        </TouchableOpacity>
       </View>
 
       <View style={styles.strip} />
@@ -186,6 +200,23 @@ const styles = StyleSheet.create({
     fontFamily: 'Pokemon',
     fontSize: Platform.select({ web: 16, default: 14 }),
     color: '#333',
+    letterSpacing: 1,
+  },
+
+  logoutBtn: {
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    borderRadius: 8,
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  logoutText: {
+    fontFamily: 'Pokemon',
+    fontSize: Platform.select({ web: 14, default: 12 }),
+    color: '#A82223',
+    fontWeight: 'bold',
     letterSpacing: 1,
   },
 });
