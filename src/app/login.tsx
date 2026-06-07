@@ -11,6 +11,7 @@ import {
   ImageBackground,
   Alert,
   TouchableOpacity,
+  Image,
 } from 'react-native';
 
 import Input from '../components/input';
@@ -21,9 +22,8 @@ import { useRouter } from 'expo-router';
 import Navbar from '../components/navbar/Navbar';
 import { Card } from '../components/card/index';
 
-// Credenciais fixas do treinador
-const USUARIO_CORRETO = 'ash';
-const SENHA_CORRETA   = 'pikachu';
+const Treinador = 'ash';
+const Senha   = 'pikachu';
 
 export default function Login() {
   const router = useRouter();
@@ -33,7 +33,7 @@ export default function Login() {
   const [senha, setSenha] = useState('');
 
   async function validateLogin() {
-    if (nome.trim() === USUARIO_CORRETO && senha === SENHA_CORRETA) {
+    if (nome.trim() === Treinador && senha === Senha) {
       await login();
       router.replace('/pokedex');
     } else {
@@ -59,12 +59,14 @@ export default function Login() {
 
           <View style={styles.cardWrapper}>
             <Card>
-              {/* Ícone decorativo único do Login */}
-              <Text style={styles.icone}>🔴</Text>
+              <Image
+                source={require('../assets/images/pokeball.gif')}
+                style={styles.icone}
+                resizeMode="contain"
+              />
 
               <Text style={styles.title}>Acessar Pokédex</Text>
 
-              {/* Apenas 2 campos: nome e senha */}
               <Input
                 nome={nome}
                 senha={senha}
@@ -120,12 +122,12 @@ const styles = StyleSheet.create({
     maxWidth: 420,
   },
 
-  // Ícone de Pokébola no topo — diferencial visual do Login
   icone: {
-    fontSize: 40,
-    textAlign: 'center',
+    width: 200,
+    height: 100,
+    alignSelf: 'center',
     marginBottom: 8,
-  },
+},
 
   title: {
     fontSize: Platform.select({ web: 26, default: 22 }),

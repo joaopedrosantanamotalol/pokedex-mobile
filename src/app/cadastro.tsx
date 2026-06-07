@@ -61,13 +61,9 @@ export default function Cadastro() {
 
           <View style={styles.cardWrapper}>
             <Card>
-              {/* Faixa colorida no topo — diferencial visual do Cadastro */}
-              <View style={styles.faixaTopo} />
-
               <Text style={styles.title}>Comece a sua jornada!</Text>
               <Text style={styles.subtitulo}>Crie sua conta de treinador</Text>
 
-              {/* 3 campos: nome, senha e confirmar senha */}
               <Input
                 nome={nome}
                 senha={senha}
@@ -83,7 +79,6 @@ export default function Cadastro() {
                 style={{ marginTop: 10 }}
               />
 
-              {/* Voltar para o login */}
               <TouchableOpacity
                 style={styles.linkContainer}
                 onPress={() => router.push('/login')}
@@ -123,14 +118,6 @@ const styles = StyleSheet.create({
   cardWrapper: {
     width: '100%',
     maxWidth: 420,
-  },
-
-  // Faixa vermelha no topo do card — diferencial visual do Cadastro
-  faixaTopo: {
-    height: 6,
-    backgroundColor: '#A82223',
-    borderRadius: 4,
-    marginBottom: 16,
   },
 
   title: {
