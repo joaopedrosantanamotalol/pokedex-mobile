@@ -124,16 +124,19 @@ export default function Team() {
   }, []);
 
   const adicionarAoTime = (pokemon: Pokemon) => {
-    if (time.length >= 5) {
-      const novoTime = [...time.slice(1), pokemon];
-      const novasOpcoes = opcoes.filter((p) => p.index !== pokemon.index);
-      setTime(novoTime);
-      setOpcoes(novasOpcoes);
-    } else {
-      setTime((prev) => [...prev, pokemon]);
-      setOpcoes((prev) => prev.filter((p) => p.index !== pokemon.index));
-    }
-  };
+  if (time.length >= 5) {
+    const removido = time[0];
+
+    const novoTime = [...time.slice(1), pokemon];
+
+    const novasOpcoes = opcoes.map((p) =>
+      p.index === pokemon.index ? removido : p
+    );
+
+    setTime(novoTime);
+    setOpcoes(novasOpcoes);
+  }
+};
 
   return (
     <SafeAreaProvider style={{ flex: 1 }}>
