@@ -15,7 +15,6 @@ const MENU_ITEMS = [
   { label: 'Time',     route: '/team'     },
   { label: 'Pokédex',  route: '/pokedex'  },
   { label: 'Batalha',  route: '/battle'  },
-  { label: 'Cadastro', route: '/cadastro'}
 ];
 
 export default function Navbar() {

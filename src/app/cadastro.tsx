@@ -10,6 +10,7 @@ import {
   Platform,
   ImageBackground,
   Alert,
+  TouchableOpacity,
 } from 'react-native';
 
 import Input from '../components/input';
@@ -24,26 +25,27 @@ export default function Cadastro() {
   const router = useRouter();
   const { login } = useAuth();
 
-  const [nome, setNome] = useState('');
+  const [nome, setNome]     = useState('');
+  const [senha, setSenha]   = useState('');
   const [senha2, setSenha2] = useState('');
-  const [senha, setSenha] = useState('');
 
-async function validateRegister() {
-  if (
-    senha === senha2 &&
-    senha !== null &&
-    senha.trim() !== ""
-  ) {
-    await login();
-    router.replace('/login');
-  } else {
-    if (Platform.OS === 'web') {
-      window.alert('As senhas são inválidas.');
-    } else {
-      Alert.alert('Erro', 'As senhas são inválidas.');
+  async function validateRegister() {
+    if (nome.trim() === '') {
+      const msg = 'Informe um nome de treinador.';
+      Platform.OS === 'web' ? window.alert(msg) : Alert.alert('Erro', msg);
+      return;
     }
+
+    if (senha.trim() === '' || senha !== senha2) {
+      const msg = 'As senhas não coincidem ou estão vazias.';
+      Platform.OS === 'web' ? window.alert(msg) : Alert.alert('Erro', msg);
+      return;
+    }
+
+    // Cadastro aprovado — faz login e vai para a pokedex
+    await login();
+    router.replace('/pokedex');
   }
-}
 
   return (
     <SafeAreaProvider style={{ flex: 1 }}>
@@ -59,22 +61,38 @@ async function validateRegister() {
 
           <View style={styles.cardWrapper}>
             <Card>
-              <Text style={styles.title}>Comece a sua jornada !</Text>
+              {/* Faixa colorida no topo — diferencial visual do Cadastro */}
+              <View style={styles.faixaTopo} />
 
+              <Text style={styles.title}>Comece a sua jornada!</Text>
+              <Text style={styles.subtitulo}>Crie sua conta de treinador</Text>
+
+              {/* 3 campos: nome, senha e confirmar senha */}
               <Input
                 nome={nome}
                 senha={senha}
                 senha2={senha2}
-                setSenha2={setSenha2}
                 setNome={setNome}
                 setSenha={setSenha}
+                setSenha2={setSenha2}
               />
 
               <Button
                 onPress={validateRegister}
-                title="ENTRAR"
+                title="REGISTRAR"
                 style={{ marginTop: 10 }}
               />
+
+              {/* Voltar para o login */}
+              <TouchableOpacity
+                style={styles.linkContainer}
+                onPress={() => router.push('/login')}
+                activeOpacity={0.7}
+              >
+                <Text style={styles.linkTexto}>
+                  Já sou treinador — Entrar
+                </Text>
+              </TouchableOpacity>
             </Card>
           </View>
         </SafeAreaView>
@@ -94,37 +112,55 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-
-    padding: Platform.select({
-      web: 40,
-      default: 20,
-    }),
+    padding: Platform.select({ web: 40, default: 20 }),
   },
 
   overlay: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: 'rgba(255,255,255,0.65)',
   },
-cardWrapper: {
-  width: '100%',
-  maxWidth: 420,
-},
+
+  cardWrapper: {
+    width: '100%',
+    maxWidth: 420,
+  },
+
+  // Faixa vermelha no topo do card — diferencial visual do Cadastro
+  faixaTopo: {
+    height: 6,
+    backgroundColor: '#A82223',
+    borderRadius: 4,
+    marginBottom: 16,
+  },
 
   title: {
-    fontSize: Platform.select({
-      web: 26,
-      default: 22,
-    }),
-
+    fontSize: Platform.select({ web: 26, default: 22 }),
     fontFamily: 'Pokemon',
     fontWeight: 'bold',
     textAlign: 'center',
-
-    marginBottom: Platform.select({
-      web: 20,
-      default: 12,
-    }),
-
+    marginBottom: 4,
     color: '#A82223',
+  },
+
+  subtitulo: {
+    fontFamily: 'Pokemon',
+    fontSize: Platform.select({ web: 13, default: 11 }),
+    color: '#888',
+    textAlign: 'center',
+    letterSpacing: 1,
+    marginBottom: Platform.select({ web: 20, default: 12 }),
+  },
+
+  linkContainer: {
+    marginTop: 16,
+    alignItems: 'center',
+  },
+
+  linkTexto: {
+    fontFamily: 'Pokemon',
+    fontSize: Platform.select({ web: 14, default: 12 }),
+    color: '#555',
+    textDecorationLine: 'underline',
+    letterSpacing: 1,
   },
 });
