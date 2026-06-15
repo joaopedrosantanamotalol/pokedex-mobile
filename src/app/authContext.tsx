@@ -1,56 +1,41 @@
-import { createContext, useContext, useState, useEffect } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { createContext, useContext, useState, ReactNode } from 'react';
 
-type AuthContextType = {
+interface AuthContextData {
   authenticated: boolean;
-  login: () => Promise<void>;
-  logout: () => Promise<void>;
-};
+  userId: string;
+  token: string;
+  username: string;
+  login: (userId: string, token: string, username: string) => void;
+  logout: () => void;
+}
 
-const AuthContext = createContext<AuthContextType>({
-  authenticated: false,
-  login: async () => {},
-  logout: async () => {},
-});
+const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
-export function AuthProvider({ children }: any) {
+export function AuthProvider({ children }: { children: ReactNode }) {
   const [authenticated, setAuthenticated] = useState(false);
+  const [userId, setUserId]               = useState('');
+  const [token, setToken]                 = useState('');
+  const [username, setUsername]           = useState('');
 
-  useEffect(() => {
-    loadAuth();
-  }, []);
-
-  async function loadAuth() {
-    const token = await AsyncStorage.getItem('@auth');
-
-    if (token) {
-      setAuthenticated(true);
-    }
-  }
-
-  async function login() {
-    await AsyncStorage.setItem('@auth', 'true');
+  const login = (id: string, tok: string, name: string) => {
+    setUserId(id);
+    setToken(tok);
+    setUsername(name);
     setAuthenticated(true);
-  }
+  };
 
-  async function logout() {
-    await AsyncStorage.removeItem('@auth');
+  const logout = () => {
+    setUserId('');
+    setToken('');
+    setUsername('');
     setAuthenticated(false);
-  }
+  };
 
   return (
-    <AuthContext.Provider
-      value={{
-        authenticated,
-        login,
-        logout,
-      }}
-    >
+    <AuthContext.Provider value={{ authenticated, userId, token, username, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
 }
 
-export function useAuth() {
-  return useContext(AuthContext);
-}
+export const useAuth = () => useContext(AuthContext);
