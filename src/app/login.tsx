@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import { useAuth } from './authContext';
-import { loginApi } from '../services/authService';
+import { loginApi } from '../services/authService'; 
 import {
   Text, StyleSheet, View, Platform, ImageBackground, Alert, TouchableOpacity,
 } from 'react-native';

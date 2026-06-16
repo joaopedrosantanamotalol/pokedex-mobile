@@ -7,179 +7,117 @@ import {
   ImageBackground,
   ScrollView,
   Image,
-  TouchableOpacity,
   ActivityIndicator,
   Platform,
 } from 'react-native';
+
 import Navbar from '../components/navbar/Navbar';
-import { Pokemon } from '../@types/pokemon';
+import { useAuth } from './authContext';
+import { getTeam } from '../services/teamService';
 
-const fetchPokemon = async (id: number): Promise<Pokemon> => {
-  const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
-  const data = await res.json();
-
-  const getStat = (nome: string) =>
-    data.stats.find((s: any) => s.stat.name === nome)?.base_stat ?? 0;
-
-  return {
-    index: data.id.toString().padStart(3, '0'),
-    nome: data.name,
-    imagem: data.sprites.front_default,
-    tipos: data.types.map((t: any) => t.type.name),
-    stats: {
-      hp:     getStat('hp'),
-      atk:    getStat('attack'),
-      def:    getStat('defense'),
-      spd:    getStat('speed'),
-      spa:    getStat('special-attack'),
-      spdDef: getStat('special-defense'),
-    },
-  };
+type Pokemon = {
+  index: string;
+  name: string;
+  image: string;
+  types: string[];
 };
 
-const sortearIds = (quantidade: number, excluir: number[] = []): number[] => {
-  const ids: number[] = [];
-  while (ids.length < quantidade) {
-    const id = Math.floor(Math.random() * 151) + 1;
-    if (!ids.includes(id) && !excluir.includes(id)) ids.push(id);
-  }
-  return ids;
-};
-
-const TIPOS_PT: Record<string, string> = {
-  normal: 'Normal', fire: 'Fogo', water: 'Água', electric: 'Elétrico',
-  grass: 'Planta', ice: 'Gelo', fighting: 'Lutador', poison: 'Veneno',
-  ground: 'Terra', flying: 'Voador', psychic: 'Psíquico', bug: 'Inseto',
-  rock: 'Pedra', ghost: 'Fantasma', dragon: 'Dragão', dark: 'Sombrio',
-  steel: 'Aço', fairy: 'Fada',
-};
-
-const TIPO_CORES: Record<string, string> = {
-  normal: '#A8A878', fire: '#F08030', water: '#6890F0', electric: '#F8D030',
-  grass: '#78C850', ice: '#98D8D8', fighting: '#C03028', poison: '#A040A0',
-  ground: '#E0C068', flying: '#A890F0', psychic: '#F85888', bug: '#A8B820',
-  rock: '#B8A038', ghost: '#705898', dragon: '#7038F8', dark: '#705848',
-  steel: '#B8B8D0', fairy: '#EE99AC',
-};
-
-function MiniCard({
-  pokemon,
-  onPress,
-  rotulo,
-}: {
-  pokemon: Pokemon;
-  onPress?: () => void;
-  rotulo?: string;
-}) {
-  const cor = TIPO_CORES[pokemon.tipos[0]] ?? '#A8A878';
+function MiniCard({ pokemon }: { pokemon: Pokemon }) {
+  const cor = '#A8A878';
 
   return (
-    <TouchableOpacity
-      style={[styles.miniCard, { borderColor: cor }]}
-      onPress={onPress}
-      activeOpacity={onPress ? 0.7 : 1}
-    >
-      {rotulo ? <Text style={[styles.rotulo, { color: cor }]}>{rotulo}</Text> : null}
+    <View style={[styles.card, { borderColor: cor }]}>
+      <Image source={{ uri: pokemon.image }} style={styles.image} />
 
-      <Image source={{ uri: pokemon.imagem }} style={styles.miniImagem} />
-
-      <Text style={styles.miniNome} numberOfLines={1}>
-        {pokemon.nome.toUpperCase()}
+      <Text style={styles.name}>
+        {pokemon.name?.toUpperCase()}
       </Text>
 
-      <View style={styles.miniTipos}>
-        {pokemon.tipos.map((tipo, i) => (
-          <View key={i} style={[styles.miniTipo, { backgroundColor: cor }]}>
-            <Text style={styles.miniTipoTexto}>{TIPOS_PT[tipo] ?? tipo}</Text>
+      <View style={styles.types}>
+        {pokemon.types?.map((t, i) => (
+          <View key={i} style={[styles.type, { backgroundColor: cor }]}>
+            <Text style={styles.typeText}>{t}</Text>
           </View>
         ))}
       </View>
-    </TouchableOpacity>
+    </View>
   );
 }
 
 export default function Team() {
-  const [time, setTime] = useState<Pokemon[]>([]);
-  const [opcoes, setOpcoes] = useState<Pokemon[]>([]);
-  const [carregando, setCarregando] = useState(true);
+  const { userId } = useAuth();
+
+  const [team, setTeam] = useState<Pokemon[]>([]);
+  const [captured, setCaptured] = useState<Pokemon[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const carregar = async () => {
-      setCarregando(true);
+    const load = async () => {
+      if (!userId) return;
 
-      const idsTime = sortearIds(5);
-      const idsOpcoes = sortearIds(25, idsTime);
+      try {
+        setLoading(true);
 
-      const [pokemonsTime, pokemonsOpcoes] = await Promise.all([
-        Promise.all(idsTime.map(fetchPokemon)),
-        Promise.all(idsOpcoes.map(fetchPokemon)),
-      ]);
+        const res = await getTeam(userId);
 
-      setTime(pokemonsTime);
-      setOpcoes(pokemonsOpcoes);
-      setCarregando(false);
+        console.log('API DATA:', res);
+
+        setTeam(res?.team ?? []);
+        setCaptured(res?.capture ?? []);
+
+      } catch (err) {
+        console.log('Erro:', err);
+      } finally {
+        setLoading(false);
+      }
     };
 
-    carregar();
-  }, []);
+    load();
+  }, [userId]);
 
-  const adicionarAoTime = (pokemon: Pokemon) => {
-  if (time.length >= 5) {
-    const removido = time[0];
-
-    const novoTime = [...time.slice(1), pokemon];
-
-    const novasOpcoes = opcoes.map((p) =>
-      p.index === pokemon.index ? removido : p
+  if (loading) {
+    return (
+      <ActivityIndicator
+        size="large"
+        color="#A82223"
+        style={{ marginTop: 40 }}
+      />
     );
-
-    setTime(novoTime);
-    setOpcoes(novasOpcoes);
   }
-};
 
   return (
     <SafeAreaProvider style={{ flex: 1 }}>
       <ImageBackground
         source={require('../assets/images/background.jpg')}
-        style={styles.background}
+        style={styles.bg}
         resizeMode="cover"
       >
         <Navbar />
 
-        <SafeAreaView style={styles.safeArea}>
+        <SafeAreaView style={styles.safe}>
           <View style={styles.overlay} />
 
-          <ScrollView contentContainerStyle={styles.scroll}>
+          <ScrollView contentContainerStyle={styles.container}>
 
-            <Text style={styles.secaoTitulo}>Meu Time</Text>
+            <Text style={styles.title}>Team</Text>
 
-            {carregando ? (
-              <ActivityIndicator color="#A82223" size="large" style={{ marginVertical: 20 }} />
-            ) : (
-              <View style={styles.grade}>
-                {time.map((pokemon) => (
-                  <MiniCard key={pokemon.index} pokemon={pokemon} />
-                ))}
-              </View>
-            )}
+            <View style={styles.grid}>
+              {team.length > 0
+                ? team.map((p) => (
+                    <MiniCard key={p.index} pokemon={p} />
+                  ))
+                : <Text>Nenhum Pokémon no time</Text>}
+            </View>
 
-            <Text style={styles.secaoTitulo}>Disponíveis</Text>
+            <Text style={styles.title}>Capturados</Text>
 
-            {carregando ? (
-              <ActivityIndicator color="#A82223" size="large" style={{ marginVertical: 20 }} />
-            ) : (
-              <View style={styles.grade}>
-                {opcoes.map((pokemon) => (
-                  <MiniCard
-                    key={pokemon.index}
-                    pokemon={pokemon}
-                    onPress={() => adicionarAoTime(pokemon)}
-                    rotulo="+ Time"
-                  />
-                ))}
-              </View>
-            )}
+            <View style={styles.grid}>
+              {captured.length > 0
+                ? captured.map((p) => (
+                    <MiniCard key={p.index} pokemon={p} />
+                  ))
+                : <Text>Nenhum Pokémon capturado</Text>}
+            </View>
 
           </ScrollView>
         </SafeAreaView>
@@ -189,13 +127,13 @@ export default function Team() {
 }
 
 const styles = StyleSheet.create({
-  background: {
+  bg: {
     flex: 1,
     width: '100%',
     height: '100%',
   },
 
-  safeArea: {
+  safe: {
     flex: 1,
   },
 
@@ -204,80 +142,66 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.45)',
   },
 
-  scroll: {
+  container: {
     padding: 20,
     paddingBottom: 40,
   },
 
-  secaoTitulo: {
+  title: {
     fontFamily: 'Pokemon',
-    fontSize: Platform.select({ web: 25, default: 18 }),
+    fontSize: Platform.select({ web: 26, default: 18 }),
     color: '#A82223',
-    marginTop: 24,
-    marginBottom: 8,
     textAlign: 'center',
+    marginVertical: 20,
   },
 
-
-  grade: {
+  grid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
     gap: 12,
   },
 
-  miniCard: {
+  card: {
     backgroundColor: 'white',
     borderRadius: 12,
     borderWidth: 2,
     alignItems: 'center',
     padding: 10,
-    width: Platform.select({ web: 130, default: 105 }),
-
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.12,
-    shadowRadius: 4,
+    width: Platform.select({ web: 130, default: 110 }),
     elevation: 4,
   },
 
-  rotulo: {
-    fontFamily: 'Pokemon',
-    fontSize: 9,
-    marginBottom: 2,
-  },
-
-  miniImagem: {
+  image: {
     width: 72,
     height: 72,
     resizeMode: 'contain',
   },
 
-  miniNome: {
+  name: {
     fontFamily: 'Pokemon',
-    fontSize: Platform.select({ web: 11, default: 9 }),
+    fontSize: 10,
+    marginTop: 6,
     color: '#333',
-    marginTop: 4,
-    textAlign: 'center',
   },
 
-  miniTipos: {
+  types: {
     flexDirection: 'row',
-    gap: 4,
-    marginTop: 6,
     flexWrap: 'wrap',
     justifyContent: 'center',
+    marginTop: 6,
+    gap: 4,
   },
 
-  miniTipo: {
+  type: {
     borderRadius: 10,
-    paddingHorizontal: 8,
+    paddingHorizontal: 6,
     paddingVertical: 2,
   },
 
-  miniTipoTexto: {
-    color: 'white',
+  typeText: {
     fontSize: 8,
+    color: 'white',
     fontFamily: 'Pokemon',
   },
 });
