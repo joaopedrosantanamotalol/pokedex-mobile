@@ -4,6 +4,6 @@ export async function getTeam(userId: string) {
   );
 
   const data = await response.json();
-
+  
   return data;
 }

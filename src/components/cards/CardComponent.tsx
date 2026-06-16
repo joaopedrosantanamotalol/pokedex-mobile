@@ -1,6 +1,6 @@
 import { View, Text, Image } from 'react-native';
 import { styles } from './CardComponent.styles';
-import { Pokemon } from '../@types/pokemon';
+import { Pokemon } from '../../@types/pokemon';
 
 type Props = {
   pokemon: Pokemon;

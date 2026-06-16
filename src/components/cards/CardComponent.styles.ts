@@ -58,7 +58,6 @@ export const styles = StyleSheet.create({
       default: 13,
     }),
     fontFamily: 'Pokemon',
-    numberOfLines: 3,
   },
 
   statsContainer: {

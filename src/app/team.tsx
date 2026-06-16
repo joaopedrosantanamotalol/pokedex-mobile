@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
+import CardPokemon from '@/components/cards/CardComponent';
+
 import {
   View,
   Text,
@@ -14,6 +16,7 @@ import {
 import Navbar from '../components/navbar/Navbar';
 import { useAuth } from './authContext';
 import { getTeam } from '../services/teamService';
+import { TeamPokemon } from '@/@types/pokemon';
 
 type Pokemon = {
   index: string;
@@ -22,33 +25,22 @@ type Pokemon = {
   types: string[];
 };
 
-function MiniCard({ pokemon }: { pokemon: Pokemon }) {
-  const cor = '#A8A878';
-
-  return (
-    <View style={[styles.card, { borderColor: cor }]}>
-      <Image source={{ uri: pokemon.image }} style={styles.image} />
-
-      <Text style={styles.name}>
-        {pokemon.name?.toUpperCase()}
-      </Text>
-
-      <View style={styles.types}>
-        {pokemon.types?.map((t, i) => (
-          <View key={i} style={[styles.type, { backgroundColor: cor }]}>
-            <Text style={styles.typeText}>{t}</Text>
-          </View>
-        ))}
-      </View>
-    </View>
-  );
+function montarStats(abilities: any[]) {
+  return {
+    hp: abilities.find(a => a.name === 'hp')?.strength ?? 0,
+    atk: abilities.find(a => a.name === 'attack')?.strength ?? 0,
+    def: abilities.find(a => a.name === 'defense')?.strength ?? 0,
+    spa: abilities.find(a => a.name === 'special-attack')?.strength ?? 0,
+    spdDef: abilities.find(a => a.name === 'special-defense')?.strength ?? 0,
+    spd: abilities.find(a => a.name === 'speed')?.strength ?? 0,
+  };
 }
 
 export default function Team() {
   const { userId } = useAuth();
 
-  const [team, setTeam] = useState<Pokemon[]>([]);
-  const [captured, setCaptured] = useState<Pokemon[]>([]);
+  const [team, setTeam] = useState<TeamPokemon[]>([]);
+  const [captured, setCaptured] = useState<TeamPokemon[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -59,7 +51,7 @@ export default function Team() {
         setLoading(true);
 
         const res = await getTeam(userId);
-
+        console.log(JSON.stringify(res, null, 2));
         console.log('API DATA:', res);
 
         setTeam(res?.team ?? []);
@@ -101,22 +93,26 @@ export default function Team() {
 
             <Text style={styles.title}>Team</Text>
 
-            <View style={styles.grid}>
-              {team.length > 0
-                ? team.map((p) => (
-                    <MiniCard key={p.index} pokemon={p} />
-                  ))
-                : <Text>Nenhum Pokémon no time</Text>}
-            </View>
-
-            <Text style={styles.title}>Capturados</Text>
-
-            <View style={styles.grid}>
-              {captured.length > 0
-                ? captured.map((p) => (
-                    <MiniCard key={p.index} pokemon={p} />
-                  ))
-                : <Text>Nenhum Pokémon capturado</Text>}
+             <View style={styles.grid}>
+              {
+                team.length > 0
+                  ? team.map((p) => (
+                      <CardPokemon
+                        key={p.index}
+                        corCard="darkred"
+                        pokemon={{
+                          index: p.index,
+                          nome: p.name,
+                          imagem: p.image,
+                          tipos: p.types,
+                          descricao: '',
+                          stats: 
+                            montarStats(p.abilities),
+                        }}
+                      />
+                    ))
+                  : <Text>Nenhum Pokémon no time</Text>
+              }
             </View>
 
           </ScrollView>

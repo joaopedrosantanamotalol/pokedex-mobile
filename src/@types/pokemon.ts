@@ -15,3 +15,13 @@ export interface Pokemon {
   stats: Stats;
   descricao?: string;
 }
+export type TeamPokemon = {
+  index: string;
+  name: string;
+  image: string;
+  types: string[];
+  abilities: {
+    name: string;
+    strength: number;
+  }[];
+};
