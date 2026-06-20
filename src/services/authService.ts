@@ -1,4 +1,3 @@
-
 const BASE = 'https://lnh1dhp1mj.execute-api.us-east-1.amazonaws.com/api-pokemon/auth/v1';
 
 export interface AuthResponse {
