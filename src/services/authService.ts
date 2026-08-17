@@ -1,29 +1,54 @@
-const BASE = 'https://lnh1dhp1mj.execute-api.us-east-1.amazonaws.com/api-pokemon/auth/v1';
+import axios from 'axios';
+import { createApi } from './httpClient';
 
-export interface AuthResponse {
-  userId: string;
+// API Nova
+const authApi = createApi(`${process.env.EXPO_PUBLIC_LOCAL_API_URL}/fatec/login/v1`);
+
+// API Antiga
+const api = axios.create({
+  baseURL: `${process.env.EXPO_PUBLIC_LOCAL_API_URL}/api-pokemon/auth/v1`,
+});
+
+export type TokenResponse = {
   token: string;
-  username: string;
-}
-
-export const register = async (username: string, password: string): Promise<AuthResponse> => {
-  const res = await fetch(`${BASE}/register`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ username, password }),
-  });
-
-  if (!res.ok) throw new Error('Erro ao registrar. Tente outro nome de treinador.');
-  return res.json();
 };
 
-export const loginApi = async (username: string, password: string): Promise<AuthResponse> => {
-  const res = await fetch(`${BASE}/login`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ username, password }),
-  });
+export type RegistroRequest = {
+  username: string;
+  password: string;
+  email: string;
+  cep: string;
+  roles: string[];
+};
 
-  if (!res.ok) throw new Error('Usuário ou senha incorretos.');
-  return res.json();
+export type AuthRequest = {
+  username: string;
+  password: string;
+};
+
+export type AuthResponse = {
+  token: string;
+  userId: string;
+};
+
+export type StatsResponse = {
+  userId: string;
+  username: string;
+  level: number;
+  vitorias: number;
+  derrotas: number;
+};
+
+export const register = async (data: RegistroRequest): Promise<void> => {
+  await authApi.post('/register', data);
+};
+
+export const login = async (data: AuthRequest): Promise<TokenResponse> => {
+  const response = await authApi.post('/auth', data);
+  return response.data;
+};
+
+export const getStats = async (userId: string): Promise<StatsResponse> => {
+  const response = await api.get<StatsResponse>(`/stats/${userId}`);
+  return response.data;
 };

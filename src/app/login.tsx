@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import { useAuth } from './authContext';
-import { loginApi } from '../services/authService'; 
+import { login } from '../services/authService'; 
 import {
   Text, StyleSheet, View, Platform, ImageBackground, Alert, TouchableOpacity,
 } from 'react-native';
@@ -15,8 +15,8 @@ export default function Login() {
   const router      = useRouter();
   const { login }   = useAuth();
 
-  const [nome, setNome]       = useState('');
-  const [senha, setSenha]     = useState('');
+  const [nome, setNome] = useState('');
+  const [senha, setSenha] = useState('');
   const [loading, setLoading] = useState(false);
 
   async function handleLogin() {
@@ -27,18 +27,19 @@ export default function Login() {
     }
 
     setLoading(true);
-    try {
-      const { userId, token, username } = await loginApi(nome.trim(), senha);
-      login(userId, token, username);
-      router.replace('/pokedex');
-    } catch (err: any) {
-      const msg = err.message ?? 'Erro ao fazer login.';
-      Platform.OS === 'web' ? window.alert(msg) : Alert.alert('Erro', msg);
-    } finally {
-      setLoading(false);
-    }
-  }
 
+    
+    const result = await login(nome.trim(), senha);
+
+    if (result.ok) {
+      router.replace('/pokedex');
+    } else {
+      const msg = 'Usuário ou senha incorretos.';
+      Platform.OS === 'web' ? window.alert(msg) : Alert.alert('Erro', msg);
+    }
+
+    setLoading(false);
+  }
   return (
     <SafeAreaProvider style={{ flex: 1 }}>
       <ImageBackground
