@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import { Redirect } from 'expo-router';
-import { useAuth } from './authContext';
-import { getStats, Stats } from '../services/statsService';
+import { useAuth } from '../../context/authContext';
+import { getStats, Stats } from '../../integration/statsService';
 import {
   View, Text, StyleSheet, ImageBackground, Image,
   ActivityIndicator, Platform,
 } from 'react-native';
-import Navbar from '../components/navbar/Navbar';
+import Navbar from '../../components/navbar/Navbar';
 
 export default function Perfil() {
   const { authenticated, userId, token, username } = useAuth();
@@ -29,7 +29,7 @@ export default function Perfil() {
   return (
     <SafeAreaProvider style={{ flex: 1 }}>
       <ImageBackground
-        source={require('../assets/images/background.jpg')}
+        source={require('../../assets/images/background.jpg')}
         style={styles.background}
         resizeMode="cover"
       >
@@ -40,7 +40,7 @@ export default function Perfil() {
           <View style={styles.container}>
             <View style={styles.card}>
               <Image
-                source={require('../assets/images/Avatar.png')}
+                source={require('../../assets/images/Avatar.png')}
                 style={styles.avatar}
               />
 

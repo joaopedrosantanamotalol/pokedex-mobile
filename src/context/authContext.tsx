@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { login as loginApi, register as registerApi, RegistroRequest } from '@/services/authService';
+import { login as loginApi, register as registerApi, RegistroRequest } from '@/integration/authService';
 import { router } from 'expo-router';
 
 import { setUnauthorizedHandler } from '@/services/httpClient';

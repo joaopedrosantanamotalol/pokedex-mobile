@@ -8,14 +8,13 @@ import {
   StyleSheet,
   ImageBackground,
   ScrollView,
-  Image,
   ActivityIndicator,
   Platform,
 } from 'react-native';
 
-import Navbar from '../components/navbar/Navbar';
-import { useAuth } from './authContext';
-import { getTeam } from '../services/teamService';
+import Navbar from '../../components/navbar/Navbar';
+import { useAuth } from '../../context/authContext';
+import { getTeam } from '../../integration/teamService';
 import { TeamPokemon } from '@/@types/pokemon';
 
 type Pokemon = {
@@ -80,7 +79,7 @@ export default function Team() {
   return (
     <SafeAreaProvider style={{ flex: 1 }}>
       <ImageBackground
-        source={require('../assets/images/background.jpg')}
+        source={require('../../assets/images/background.jpg')}
         style={styles.bg}
         resizeMode="cover"
       >
@@ -93,7 +92,7 @@ export default function Team() {
 
             <Text style={styles.title}>Team</Text>
 
-             <View style={styles.grid}>
+            <View style={styles.grid}>
               {
                 team.length > 0
                   ? team.map((p) => (

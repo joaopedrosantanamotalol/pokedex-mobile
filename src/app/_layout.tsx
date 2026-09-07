@@ -1,7 +1,7 @@
 import { Stack } from 'expo-router';
 import { useFonts } from 'expo-font';
 
-import { AuthProvider } from './authContext';
+import { AuthProvider } from '../context/authContext';
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({

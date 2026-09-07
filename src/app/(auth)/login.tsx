@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
-import { useAuth } from './authContext';
-import { login } from '../services/authService'; 
+import { useAuth } from '../../context/authContext';
+import { login } from '../../integration/authService'; 
 import {
   Text, StyleSheet, View, Platform, ImageBackground, Alert, TouchableOpacity,
 } from 'react-native';
-import Input from '../components/input';
-import Button from '../components/button';
+import Input from '../../components/input';
+import Button from '../../components/button';
 import { useRouter } from 'expo-router';
-import Navbar from '../components/navbar/Navbar';
-import { Card } from '../components/card/index';
+import Navbar from '../../components/navbar/Navbar';
+import { Card } from '../../components/card/index';
 
 export default function Login() {
   const router      = useRouter();
@@ -43,7 +43,7 @@ export default function Login() {
   return (
     <SafeAreaProvider style={{ flex: 1 }}>
       <ImageBackground
-        source={require('../assets/images/background.jpg')}
+        source={require('../../assets/images/background.jpg')}
         style={styles.background}
         resizeMode="cover"
       >
