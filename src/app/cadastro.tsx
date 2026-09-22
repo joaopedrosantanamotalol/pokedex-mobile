@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
-import { useAuth } from './authContext';
+import { useAuth } from '../context/authContext';
 import { register } from '../services/authService';
 import {
   Text, StyleSheet, View, Platform, ImageBackground, Alert, TouchableOpacity,

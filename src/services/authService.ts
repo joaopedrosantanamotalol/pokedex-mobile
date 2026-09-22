@@ -3,7 +3,6 @@ import { createApi } from './httpClient';
 
 // API Nova
 const authApi = createApi(`${process.env.EXPO_PUBLIC_LOCAL_API_URL}/fatec/login/v1`);
-
 // API Antiga
 const api = axios.create({
   baseURL: `${process.env.EXPO_PUBLIC_LOCAL_API_URL}/api-pokemon/auth/v1`,

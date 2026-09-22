@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 
 import Navbar from '../components/navbar/Navbar';
-import { useAuth } from './authContext';
+import { useAuth } from '../context/authContext';
 import { getTeam } from '../services/teamService';
 import { TeamPokemon } from '@/@types/pokemon';
 

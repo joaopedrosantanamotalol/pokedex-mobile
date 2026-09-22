@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import { Redirect } from 'expo-router';
-import { useAuth } from './authContext';
+import { useAuth } from '../context/authContext';
 import { getStats, Stats } from '../services/statsService';
 import {
   View, Text, StyleSheet, ImageBackground, Image,

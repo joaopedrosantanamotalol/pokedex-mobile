@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
-import { useAuth } from '../../app/authContext';
+import { useAuth } from '../../context/authContext';
 
 const MENU_ITEMS = [
   { label: 'Perfil',   route: '/profile'   },

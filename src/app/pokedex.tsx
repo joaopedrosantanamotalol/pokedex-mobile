@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import Navbar from '../components/navbar/Navbar';
 import { Redirect } from 'expo-router';
-import { useAuth } from './authContext';
+import { useAuth } from '../context/authContext';
 import { getPokemons } from '../integration/pokemonIntegration';
 import { Pokemon } from '../@types/pokemon';
 

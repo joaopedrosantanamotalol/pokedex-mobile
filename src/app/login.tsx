@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
-import { useAuth } from './authContext';
+import { useAuth } from '../context/authContext';
 import { login } from '../services/authService'; 
 import {
   Text, StyleSheet, View, Platform, ImageBackground, Alert, TouchableOpacity,
@@ -27,8 +27,6 @@ export default function Login() {
     }
 
     setLoading(true);
-
-    
     const result = await login(nome.trim(), senha);
 
     if (result.ok) {
