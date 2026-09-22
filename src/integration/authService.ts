@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { createApi } from './httpClient';
+import { createApi } from '../services/httpClient';
 
 // API Nova
 const authApi = createApi(`${process.env.EXPO_PUBLIC_LOCAL_API_URL}/fatec/login/v1`);
